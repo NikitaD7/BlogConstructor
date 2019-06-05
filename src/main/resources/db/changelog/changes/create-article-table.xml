@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd
+    http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+    <changeSet author="Nikita Derbenev" id="1">
+        <createTable tableName="article">
+
+            <column autoIncrement="true" name="id" type="INT">
+                <constraints primaryKey="true"/>
+            </column>
+
+            <column name="title" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+
+            <column name="body" type="clob"/>
+
+            <column name="uuid" type="CHAR(36)">
+                <constraints nullable="false" unique="true"/>
+            </column>
+
+            <column name="author" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+
+            <column name="deleted" type="boolean">
+                <constraints nullable="false"/>
+            </column>
+
+            <column name="published" type="boolean">
+                <constraints nullable="false"/>
+            </column>
+
+            <column name="published_date" type="timestamp"/>
+
+            <column name="create_date" type="timestamp">
+                <constraints nullable="false"/>
+            </column>
+
+            <column name="last_edit_date" type="timestamp">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+
+        <rollback>
+            <dropTable tableName="article"/>
+        </rollback>
+    </changeSet>
+</databaseChangeLog>
